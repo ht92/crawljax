@@ -23,8 +23,6 @@ public final class CrawljaxSimpleExampleSettings {
 		CrawljaxConfigurationBuilder builder = CrawljaxConfiguration.builderFor(URL);
 		builder.crawlRules().insertRandomDataInInputForms(false);
 
-		//builder.crawlRules().nrOfTimes(2).click("a").withText("Contact");
-		//builder.crawlRules().click("a").withText("About");
 		builder.crawlRules().nrOfTimes(4).click("button").withAttribute("id", "gbqfba");
 		/*builder.crawlRules().click("button").withAttribute("id", "gbqfba");
 		builder.crawlRules().click("button").withAttribute("id", "gbqfba");
