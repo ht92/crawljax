@@ -4,16 +4,20 @@ import static com.crawljax.core.configuration.CrawlElementMatcher.withXpath;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import com.crawljax.core.configuration.CrawlRules.CrawlRulesBuilder;
+
 public class CrawlActionsTest {
 
 	private CrawlActionsBuilder actions;
-
+	private CrawlRulesBuilder rules;
 	@Before
 	public void setup() {
 		actions = new CrawlActionsBuilder();
@@ -52,5 +56,22 @@ public class CrawlActionsTest {
 		                withXpath("//B[@id='someId']//*"),
 		                withXpath("//B[@class='someClass']//*"),
 		                withXpath("//B[@class='someClass']//*")));
+	}
+	
+	@Test
+	public void testNrOfTimes(){
+		int num = 2;
+		rules.nrOfTimes(num);
+		int count = actions.getCount();
+		assertEquals(count, 2);
+	}
+	
+	@Test
+	public void testRandomNrOfTimes(){
+		
+		rules.randomNrOfTimes(10, 100);
+		int count = actions.getCount();
+		assertTrue(count < 100);
+		assertTrue( count > 10 );
 	}
 }
