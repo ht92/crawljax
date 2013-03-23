@@ -42,6 +42,7 @@ public final class CrawlElement {
 	private final List<String> inputFieldIds = Lists.newLinkedList();
 
 	private String underXpath;
+	private int count = 1;
 
 	/**
 	 * To create a CrawlElement representing an HTML element <a>MyLink</a> the tag name would be

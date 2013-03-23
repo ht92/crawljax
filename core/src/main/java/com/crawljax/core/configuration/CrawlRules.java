@@ -1,5 +1,6 @@
 package com.crawljax.core.configuration;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import com.crawljax.condition.Condition;
@@ -240,6 +241,24 @@ public class CrawlRules {
 			crawlRules.ignoredFrameIdentifiers = ignoredFrameIdentifiers.build();
 			return crawlRules;
 		}
+		
+		public CrawlRulesBuilder nrOfTimes(int count) {
+			crawlActionsBuilder.setCount(count);
+			return this;
+		}
+		
+		public CrawlRulesBuilder randomNrOfTimes() {
+			Random rand = new Random();
+			crawlActionsBuilder.setCount(rand.nextInt());
+			return this;
+		}
+		
+		public CrawlRulesBuilder randomNrOfTimes(int min, int max) {
+			Random rand = new Random();
+			crawlActionsBuilder.setCount(rand.nextInt(max-min) + min);
+			return this;
+		}
+		
 	}
 
 	public static CrawlRulesBuilder builder() {
