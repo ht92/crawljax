@@ -240,6 +240,12 @@ public class CrawlRules {
 			crawlRules.ignoredFrameIdentifiers = ignoredFrameIdentifiers.build();
 			return crawlRules;
 		}
+		
+		public CrawlRulesBuilder nrOfTimes(int count) {
+			crawlActionsBuilder.setCount(count);
+			return this;
+		}
+		
 	}
 
 	public static CrawlRulesBuilder builder() {

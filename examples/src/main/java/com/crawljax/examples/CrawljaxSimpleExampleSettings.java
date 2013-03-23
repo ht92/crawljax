@@ -23,19 +23,25 @@ public final class CrawljaxSimpleExampleSettings {
 		CrawljaxConfigurationBuilder builder = CrawljaxConfiguration.builderFor(URL);
 		builder.crawlRules().insertRandomDataInInputForms(false);
 
-		builder.crawlRules().click("a");
-		builder.crawlRules().click("button");
+		//builder.crawlRules().nrOfTimes(2).click("a").withText("Contact");
+		//builder.crawlRules().click("a").withText("About");
+		builder.crawlRules().nrOfTimes(4).click("button").withAttribute("id", "gbqfba");
+		/*builder.crawlRules().click("button").withAttribute("id", "gbqfba");
+		builder.crawlRules().click("button").withAttribute("id", "gbqfba");
+		builder.crawlRules().click("button").withAttribute("id", "gbqfba");
+		builder.crawlRules().click("button").withAttribute("id", "gbqfba");*/
 
 		// except these
-		builder.crawlRules().dontClick("a").underXPath("//DIV[@id='guser']");
-		builder.crawlRules().dontClick("a").withText("Language Tools");
+		//builder.crawlRules().dontClick("a").underXPath("//DIV[@id='guser']");
+		//builder.crawlRules().dontClick("a").withText("Language Tools");
 
 		// limit the crawling scope
 		builder.setMaximumStates(MAX_NUMBER_STATES);
 		builder.setMaximumDepth(MAX_DEPTH);
 
-		builder.crawlRules().setInputSpec(getInputSpecification());
-
+		//builder.crawlRules().setInputSpec(getInputSpecification());
+		
+		
 		CrawljaxController crawljax = new CrawljaxController(builder.build());
 		crawljax.run();
 

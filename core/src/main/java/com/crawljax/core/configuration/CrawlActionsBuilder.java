@@ -67,6 +67,8 @@ public class CrawlActionsBuilder {
 	private final List<CrawlElement> crawlElementsExcluded = Lists.newLinkedList();
 	private final List<ExcludeByParentBuilder> crawlParentsExcluded = Lists.newLinkedList();
 	private ImmutableList<CrawlElement> resultingElementsExcluded = null;
+	
+	private int count = 1;
 
 	CrawlActionsBuilder() {
 	}
@@ -84,7 +86,8 @@ public class CrawlActionsBuilder {
 		checkNotRead();
 		Preconditions.checkNotNull(tagName, "Tagname cannot be null");
 		CrawlElement crawlTag = new CrawlElement(EventType.click, tagName.toUpperCase());
-		crawlElements.add(crawlTag);
+		for (int i = 0; i < count; i++)
+			crawlElements.add(crawlTag);
 		return crawlTag;
 	}
 
@@ -186,6 +189,10 @@ public class CrawlActionsBuilder {
 	 */
 	Pair<ImmutableList<CrawlElement>, ImmutableList<CrawlElement>> build() {
 		return Pair.of(getCrawlElements(), getCrawlElementsExcluded());
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 }
