@@ -195,7 +195,21 @@ public class CrawlRules {
 		public CrawlElement click(String tagName) {
 			return crawlActionsBuilder.click(tagName);
 		}
-
+		
+		public CrawlRulesBuilder nrOfTimes(int count){
+			//TODO 
+			
+			
+			return this;
+	
+		}
+		
+		public CrawlRulesBuilder randomNrOfTimes(int min, int max){
+			//TODO
+			
+			return this;
+		}
+		
 		/**
 		 * @param tagNames
 		 * @see com.crawljax.core.configuration.CrawlActionsBuilder#click(java.lang.String[])
