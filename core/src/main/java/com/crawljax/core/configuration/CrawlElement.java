@@ -2,6 +2,7 @@ package com.crawljax.core.configuration;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import com.crawljax.condition.Condition;
 import com.crawljax.condition.eventablecondition.EventableCondition;
@@ -10,15 +11,16 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
 /**
- * Represents the HTML elements which should be crawled. It represents all the HTML elements in the
- * DOM that match the specified tag name. 1) <a class="foo" .. 2) <div... 3) <a href="http://
- * CrawlElement exampleCrawlElement = new CrawlElement("a") represents the elements 1 and 3 You can
- * refine the set of elements a CrawlElement represents by specifying attributes and XPath
- * conditions For example, you can refine exampleCrawlElement to represent only element 1 using
- * exampleCrawlElement.withAttribute("class", "foo");
+ * Represents the HTML elements which should be crawled. It represents all the
+ * HTML elements in the DOM that match the specified tag name. 1) <a class="foo"
+ * .. 2) <div... 3) <a href="http:// CrawlElement exampleCrawlElement = new
+ * CrawlElement("a") represents the elements 1 and 3 You can refine the set of
+ * elements a CrawlElement represents by specifying attributes and XPath
+ * conditions For example, you can refine exampleCrawlElement to represent only
+ * element 1 using exampleCrawlElement.withAttribute("class", "foo");
  * <p/>
- * NOTE: In general CrawlElement is not designed to be instantiated directly. CrawlElement should be
- * used as follows:
+ * NOTE: In general CrawlElement is not designed to be instantiated directly.
+ * CrawlElement should be used as follows:
  * <p/>
  * <code>
  * CrawlSpecification crawler = new CrawlSpecification();
@@ -44,8 +46,8 @@ public final class CrawlElement {
 	private String underXpath;
 
 	/**
-	 * To create a CrawlElement representing an HTML element <a>MyLink</a> the tag name would be
-	 * "a".
+	 * To create a CrawlElement representing an HTML element <a>MyLink</a> the
+	 * tag name would be "a".
 	 * 
 	 * @param eventType
 	 *            the event type for this crawl element.
@@ -56,10 +58,32 @@ public final class CrawlElement {
 		this.eventType = eventType;
 	}
 
+	public void nrOfTimes(int count) {
+		// TODO
+
+		
+
+	}
+	
+	public void randomNrOfTimes(){
+		//TODO
+		Random rand = new Random();
+		int number = rand.nextInt();
+		
+		
+	}
+	
+	public void asLongAsExists(){
+		//TODO
+		
+		
+	}
+
 	/**
-	 * Crawljax will crawl the HTML elements while crawling if and only if all the specified
-	 * conditions are satisfied. IMPORTANT: only works with click()!!! For example:
-	 * when(onContactPageCondition) will only click the HTML element if it is on the contact page
+	 * Crawljax will crawl the HTML elements while crawling if and only if all
+	 * the specified conditions are satisfied. IMPORTANT: only works with
+	 * click()!!! For example: when(onContactPageCondition) will only click the
+	 * HTML element if it is on the contact page
 	 * 
 	 * @param conditions
 	 *            the condition to be met.
@@ -71,12 +95,14 @@ public final class CrawlElement {
 	}
 
 	/**
-	 * Restrict CrawlElement to include only HTML elements with the specified attribute. For example
-	 * <div class="foo">... <div class="bar">.. </div> </div> withAtttribute("class", "foo") Would
-	 * restrict this CrawlElement to only include the div with class="foo"... AttributeName and
-	 * value strings can support wild-card characters. Use % in to represent a wild-card string. e.g
-	 * (% is the regex .*) When withAttribute() is called multiple times the CrawlElement will match
-	 * only those HTML elements that have all the specified attributes.
+	 * Restrict CrawlElement to include only HTML elements with the specified
+	 * attribute. For example <div class="foo">... <div class="bar">.. </div>
+	 * </div> withAtttribute("class", "foo") Would restrict this CrawlElement to
+	 * only include the div with class="foo"... AttributeName and value strings
+	 * can support wild-card characters. Use % in to represent a wild-card
+	 * string. e.g (% is the regex .*) When withAttribute() is called multiple
+	 * times the CrawlElement will match only those HTML elements that have all
+	 * the specified attributes.
 	 * 
 	 * @param attributeName
 	 *            the name of the attribute
@@ -90,13 +116,15 @@ public final class CrawlElement {
 	}
 
 	/**
-	 * Restrict CrawlElement to include only HTML elements which are under HTML element X which
-	 * identified by the xpath expression xpathExpression When xpathExpression returns no HTML
-	 * elements this Crawltag is not considred under element X. Element X is included when it
-	 * matches the other restrictions of this CrawlElement For example: <HTML> <BODY> <DIV id="foo">
-	 * <SPAN id="bar"> <A...></A> </SPAN> </DIV> .. //DIV[@id='foo'] includes the div, span and a
-	 * elements //SPAN[@id='foo'] includes the span and a elements //DIV[@class='link'] will not
-	 * include any elements IMPORTANT: In the xpath expression write elements in uppercase and
+	 * Restrict CrawlElement to include only HTML elements which are under HTML
+	 * element X which identified by the xpath expression xpathExpression When
+	 * xpathExpression returns no HTML elements this Crawltag is not considred
+	 * under element X. Element X is included when it matches the other
+	 * restrictions of this CrawlElement For example: <HTML> <BODY> <DIV
+	 * id="foo"> <SPAN id="bar"> <A...></A> </SPAN> </DIV> .. //DIV[@id='foo']
+	 * includes the div, span and a elements //SPAN[@id='foo'] includes the span
+	 * and a elements //DIV[@class='link'] will not include any elements
+	 * IMPORTANT: In the xpath expression write elements in uppercase and
 	 * attributes in lowercase
 	 * 
 	 * @param xpathExpression
@@ -109,10 +137,11 @@ public final class CrawlElement {
 	}
 
 	/**
-	 * Restrict crawlTag to include only HTML elements which have the specified text For example 1)
-	 * <a>Foo</a> 2) <a>Bar</a> 3) <a>Example 3a</a> withText("Foo") will include element 1
-	 * withText("Example %") will include elements3 Text can support wild-card characters. Use % in
-	 * to represent a wild-card string. e.g (% is the regex .*)
+	 * Restrict crawlTag to include only HTML elements which have the specified
+	 * text For example 1) <a>Foo</a> 2) <a>Bar</a> 3) <a>Example 3a</a>
+	 * withText("Foo") will include element 1 withText("Example %") will include
+	 * elements3 Text can support wild-card characters. Use % in to represent a
+	 * wild-card string. e.g (% is the regex .*)
 	 * 
 	 * @param text
 	 *            Text that should be inside the element.
@@ -127,12 +156,15 @@ public final class CrawlElement {
 	 * @return the EventableCondition belonging to this CrawlElement
 	 */
 	public EventableCondition getEventableCondition() {
-		if ((getWithXpathExpression() == null || getWithXpathExpression().equals(""))
-		        && getConditions().isEmpty() && getInputFieldIds().isEmpty()) {
+		if ((getWithXpathExpression() == null || getWithXpathExpression()
+				.equals(""))
+				&& getConditions().isEmpty()
+				&& getInputFieldIds().isEmpty()) {
 			return null;
 		}
 		EventableCondition eventableCondition = new EventableCondition(getId());
-		if (getWithXpathExpression() != null && !getWithXpathExpression().equals("")) {
+		if (getWithXpathExpression() != null
+				&& !getWithXpathExpression().equals("")) {
 			eventableCondition.setInXPath(getWithXpathExpression());
 		}
 		if (getConditions().size() > 0) {
