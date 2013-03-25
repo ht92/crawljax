@@ -5,6 +5,7 @@ import org.apache.commons.configuration.ConfigurationException;
 import com.crawljax.core.CrawljaxController;
 import com.crawljax.core.configuration.CrawljaxConfiguration;
 import com.crawljax.core.configuration.CrawljaxConfiguration.CrawljaxConfigurationBuilder;
+import com.crawljax.core.configuration.Form;
 import com.crawljax.core.configuration.InputSpecification;
 
 /**
@@ -20,10 +21,12 @@ public final class CrawljaxSimpleExampleSettings {
 	 * Entry point
 	 */
 	public static void main(String[] args) throws ConfigurationException {
-		CrawljaxConfigurationBuilder builder = CrawljaxConfiguration.builderFor(URL);
+		CrawljaxConfigurationBuilder builder = CrawljaxConfiguration
+				.builderFor(URL);
 		builder.crawlRules().insertRandomDataInInputForms(false);
 
 		builder.crawlRules().click("a");
+		builder.crawlRules().click("a", 5).withText("Google Search");
 		builder.crawlRules().click("button");
 
 		// except these
@@ -34,6 +37,7 @@ public final class CrawljaxSimpleExampleSettings {
 		builder.setMaximumStates(MAX_NUMBER_STATES);
 		builder.setMaximumDepth(MAX_DEPTH);
 
+		
 		builder.crawlRules().setInputSpec(getInputSpecification());
 
 		CrawljaxController crawljax = new CrawljaxController(builder.build());

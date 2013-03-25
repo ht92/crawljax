@@ -1,5 +1,6 @@
 package com.crawljax.core.configuration;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import com.crawljax.condition.Condition;
@@ -195,19 +196,24 @@ public class CrawlRules {
 		public CrawlElement click(String tagName) {
 			return crawlActionsBuilder.click(tagName);
 		}
+
 		
-		public CrawlRulesBuilder nrOfTimes(int count){
-			//TODO 
-			
-			
-			return this;
-	
+		public CrawlElement click(String tagName, int muti){
+			//TODO
+			return crawlActionsBuilder.click(tagName, muti);
 		}
 		
-		public CrawlRulesBuilder randomNrOfTimes(int min, int max){
+		
+		public CrawlElement click(String tagName, String rand){
 			//TODO
+			if(rand == "random"){
+				Random random = new Random();
+				int number = random.nextInt();
+				
+			}
 			
-			return this;
+			
+			return crawlActionsBuilder.click(tagName);
 		}
 		
 		/**

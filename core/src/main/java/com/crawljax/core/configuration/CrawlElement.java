@@ -43,6 +43,7 @@ public final class CrawlElement {
 	private final EventType eventType;
 	private final List<String> inputFieldIds = Lists.newLinkedList();
 
+	private boolean clickOnce = true;
 	private String underXpath;
 
 	/**
@@ -58,15 +59,21 @@ public final class CrawlElement {
 		this.eventType = eventType;
 	}
 
+	public boolean clickOnce(){
+		
+		return this.clickOnce;
+	}
+	
 	public void nrOfTimes(int count) {
 		// TODO
-
+		this.clickOnce = false;
 		
 
 	}
 	
 	public void randomNrOfTimes(){
 		//TODO
+		this.clickOnce = true;
 		Random rand = new Random();
 		int number = rand.nextInt();
 		
